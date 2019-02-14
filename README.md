@@ -47,6 +47,11 @@ Just enjoy!
 
 ## Release Notes
 
+### v2.0.1
+Feb 15, 2019
+
+* (新增) 107學年度行事曆
+
 ### v2.0
 Set 15, 2016
 
