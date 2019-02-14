@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="android:actionBarSize">60dp</item>
+        <item name="actionBarStyle">@style/AppBaseTheme.ActionBar</item>
+        <!-- <item name="actionBarTabTextStyle">@style/AppBaseTheme.ActionBar.TabBar.Text</item>
+        <item name="android:windowBackground">@drawable/app_background</item>-->
+    </style>
+
+</resources>

@@ -1,0 +1,162 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AboutActivity"
+    android:orientation="vertical"
+    android:background="#FFE5E5E5"
+    tools:ignore="Overdraw">
+
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar" />
+
+    <ScrollView
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CCULife"
+                android:textSize="25sp"
+                android:typeface="sans"
+                android:textColor="@color/DarkGray"
+                android:background="@color/White"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                android:padding="20dp"
+                android:textStyle="bold"
+                android:id="@+id/title" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/author_say"
+                android:typeface="sans"
+                android:textColor="@color/DarkGray"
+                android:layout_marginBottom="15dp"
+                android:background="@color/White"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                android:padding="20dp"
+                android:textSize="20sp"
+                android:autoLink="web" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Web"
+                android:textSize="25sp"
+                android:typeface="sans"
+                android:textColor="@color/DarkGray"
+                android:background="@color/White"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                android:padding="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/web"
+                android:typeface="sans"
+                android:textColor="@color/DarkGray"
+                android:layout_marginBottom="15dp"
+                android:background="@color/White"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                android:padding="20dp"
+                android:textSize="20sp"
+                android:autoLink="web"
+                android:id="@+id/textView" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Github"
+                android:textSize="25sp"
+                android:typeface="sans"
+                android:textColor="@color/DarkGray"
+                android:background="@color/White"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                android:padding="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/opensource"
+                android:typeface="sans"
+                android:textColor="@color/DarkGray"
+                android:layout_marginBottom="15dp"
+                android:background="@color/White"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                android:padding="20dp"
+                android:textSize="20sp"
+                android:autoLink="web" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Third Party Library"
+                android:textSize="25sp"
+                android:typeface="sans"
+                android:textColor="@color/DarkGray"
+                android:background="@color/White"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                android:padding="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/third_party"
+                android:typeface="sans"
+                android:textColor="@color/DarkGray"
+                android:layout_marginBottom="15dp"
+                android:background="@color/White"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                android:padding="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logo"
+                android:textSize="25sp"
+                android:typeface="sans"
+                android:textColor="@color/DarkGray"
+                android:background="@color/White"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                android:padding="20dp"
+                android:textStyle="bold" />
+
+            <include layout="@layout/about_logo" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CCULife</string>
+    <string name="ecourse">Ecourse</string>
+    <string name="course">Course</string>
+    <string name="setting">設定</string>
+    <string name="classmate">修課同學</string>
+
+    <string name="title_activity_home">@string/app_name</string>
+    <string name="title_activity_ecourse">@string/ecourse</string>
+    <string name="title_activity_course_list">CourseList</string>
+    <string name="title_activity_course">Course</string>
+    <string name="title_activity_course_classmate">@string/classmate</string>
+    <string name="title_announce">公告</string>
+    <string name="title_score">成績</string>
+    <string name="title_file">檔案</string>
+    <string name="title_homework">作業</string>
+    <string name="title_roll_call">點名</string>
+
+    <string name="title_activity_course_schedule">CourseSchedule</string>
+    <string name="title_timetable_week">每周課表</string>
+    <string name="title_timetable_day">當日課表</string>
+    <string name="title_activity_score">Score</string>
+
+    <string name="title_activity_ccuschedule">CCUSchedule</string>
+    <string name="title_activity_about">About</string>
+
+    <string name="open_in_browser">在瀏覽器中開啟</string>
+    <string name="action_settings">@string/setting</string>
+    <string name="action_classmatelist">@string/classmate</string>
+
+    <string name="monday">星期一</string>
+    <string name="tuesday">星期二</string>
+    <string name="wednesday">星期三</string>
+    <string name="thursday">星期四</string>
+    <string name="friday">星期五</string>
+
+    <string name="about">關於</string>
+    <string name="author">作者</string>
+    <string name="author_say">CCULife 萬歲!!!</string>
+    <string name="opensource">https://github.com/Zankio/CCULife</string>
+    <string name="web">http://zankio.github.io/CCULife</string>
+    <string name="third_party">Jsoup\n\nThe MIT License\nCopyright © 2009 – 2019 Jonathan Hedley (jonathan@hedley.net)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+    <string name="pref_header_custom">自訂</string>
+
+    <string name="remember_user_pass">記住帳號密碼</string>
+
+    <string name="downloading">下載中...</string>
+    <string name="download_error">下載錯誤</string>
+    <string name="download_complete">下載完成</string>
+    <string name="download_file">下載:</string>
+
+    <string name="new_version">新版本</string>
+
+    <string name="train_minxiong">民雄\n火車站</string>
+    <string name="train_chiayi">嘉義\n火車站</string>
+    <string name="cybus">嘉義縣\n公車</string>
+    <string name="solarbus">日統</string>
+    <string name="tcbus">台中\n客運</string>
+
+    <string name="transport">交通</string>
+    <string name="timetable">課表</string>
+    <string name="score_query">成績查詢</string>
+    <string name="schedule">行事曆</string>
+    <string name="cancel">取消</string>
+    <string name="ok">確定</string>
+    <string name="enable_offline">啟用離線瀏覽</string>
+    <string name="reference_bus">資料來源：\n交通部公路總局\n公路客運乘車資訊查詢系統</string>
+    <string name="reference_train">資料來源：\n臺灣鐵路管理局\n列車動態查詢系統\n實際時間以車站公告時間為準</string>
+    <string name="cant_open">找不到可以開啟的程式</string>
+    <string name="update_course_list">更新旁聽課程列表</string>
+    <string name="updating">更新中...</string>
+    <string name="update_success">更新成功</string>
+    <string name="update_fail">更新失敗</string>
+    <string name="last_update_at">"最後更新於 "</string>
+    <string name="no_result">沒有結果</string>
+    <string name="ccu_logo">ccu logo</string>
+    <string name="cculife_icon">cculife icon</string>
+    <string name="search_icon">search icon</string>
+    <string name="bus_stop">bus stop</string>
+    <string name="service_icon">service icon</string>
+    <string name="message_icon">message icon</string>
+    <string name="course_search_hint">名稱/教師/教室</string>
+
+</resources>

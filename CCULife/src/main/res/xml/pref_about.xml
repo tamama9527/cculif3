@@ -1,0 +1,38 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- A 'parent' preference, which enables/disables child preferences (below)
+         when checked/unchecked. -->
+    <!--
+    <CheckBoxPreference
+        android:title="自動檢查更新"
+        android:key="auto_check_update"
+        android:defaultValue="true"/>
+    <ListPreference
+        android:title="@string/pref_update_interval"
+        android:key="update_interval"
+        android:entries="@array/pref_update_interval_titles"
+        android:entryValues="@array/pref_update_interval_values"
+        android:defaultValue="1"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"/>
+    <Preference
+        android:key="check_update"
+        android:title="檢查更新">
+    </Preference>
+    -->
+    <Preference
+        android:key="about_title"
+        android:title="@string/app_name">
+    </Preference>
+    <Preference
+        android:key="about_author"
+        android:title="@string/author"
+        android:summary="Zankio">
+    </Preference>
+    <Preference
+        android:key="about"
+        android:title="@string/about">
+        <intent android:action="org.zankio.cculife.ui.AboutActivity"/>
+    </Preference>
+
+</PreferenceScreen>

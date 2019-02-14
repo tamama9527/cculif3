@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light">
+        <!-- <item name="actionBarSize">160dp</item>
+        <item name="actionBarStyle">@style/AppBaseTheme.ActionBar</item>
+        <item name="actionBarTabTextStyle">@style/AppBaseTheme.ActionBar.TabBar.Text</item>
+        <item name="android:windowBackground">@drawable/app_background</item>-->
+    </style>
+
+    <style name="course_warring">
+        <item name="android:background">#AAFF0000</item>
+    </style>
+
+    <style name="NewAppTheme"
+        parent="NewAppBaseTheme" >
+    </style>
+
+    <style name="NewAppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">#222222</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="logo">@drawable/logo</item>
+        <item name="toolbarStyle">@style/NewAppBaseTheme.Toolbar</item>
+        <item name="actionOverflowButtonStyle">@style/NewAppBaseTheme.ActionButton.Overflow</item>
+    </style>
+    <style name="NewAppBaseTheme.ActionButton.Overflow" parent="Widget.AppCompat.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_more_vert_24dp</item>
+    </style>
+
+    <style name="NewAppBaseTheme.Toolbar" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="titleTextAppearance">@style/NewAppBaseTheme.Toolbar.Title</item>
+        <item name="subtitleTextAppearance">@style/NewAppBaseTheme.Toolbar.Subtitle</item>
+    </style>
+    <style name="NewAppBaseTheme.Toolbar.Title" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/DarkBrown</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="NewAppBaseTheme.Toolbar.Subtitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textColor">@color/DarkGray</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+    <style
+        name="AppTheme"
+        parent="AppBaseTheme" >
+    </style>
+
+    <style
+        name="AppDialog"
+        parent="AppTheme" >
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="LoginFormContainer" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+
+    <style name="AppBaseTheme.ActionBar.TabBar.Text" parent="@android:style/TextAppearance">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="AppBaseTheme.ActionBar" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:icon">@drawable/icon</item>
+        <item name="logo">@drawable/ic_launcher</item>
+        <item name="displayOptions">showHome|useLogo|showTitle</item>
+        <item name="titleTextStyle">@style/AppBaseTheme.ActionBar.Text</item>
+        <item name="android:background">@drawable/action_bar_background</item>
+    </style>
+
+    <style name="AppBaseTheme.ActionBar.Text" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/DarkBrown</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

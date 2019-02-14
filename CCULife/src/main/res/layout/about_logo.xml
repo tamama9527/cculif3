@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingTop="30dp"
+    android:paddingBottom="30dp"
+    tools:ignore="Overdraw">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/logo_ccu"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:contentDescription="@string/ccu_logo"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/dbg_c"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/dbg_c2"
+            android:layout_toStartOf="@+id/dbg_c2" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/dbg_c2"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/dbg_u"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/dbg_c2"
+            android:layout_toEndOf="@+id/dbg_c2" />
+    </RelativeLayout>
+</RelativeLayout>
