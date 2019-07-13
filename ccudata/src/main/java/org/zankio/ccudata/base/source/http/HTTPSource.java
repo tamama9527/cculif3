@@ -1,5 +1,9 @@
 package org.zankio.ccudata.base.source.http;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import org.zankio.ccudata.base.model.CookieJar;
 import org.zankio.ccudata.base.model.HttpResponse;
 import org.zankio.ccudata.base.model.OkHttpResponse;
@@ -8,15 +12,16 @@ import org.zankio.ccudata.base.source.FetchParseSource;
 import org.zankio.ccudata.base.source.http.annotation.Charset;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.ConnectionSpec;
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -29,6 +34,7 @@ public abstract class HTTPSource<TArgument, TData> extends FetchParseSource<TArg
     public static Map<String, SSLSocketFactory> sslSocketFactory = new HashMap<>();
     public static Map<String, X509TrustManager> trustManager = new HashMap<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected HttpResponse fetch(Request<TData, TArgument> request, boolean inner) throws Exception {
         initHTTPRequest(request);
@@ -45,12 +51,13 @@ public abstract class HTTPSource<TArgument, TData> extends FetchParseSource<TArg
                     getCharset()
             ).cookieJar(cookieJar);
         } catch (IOException e) {
-            throw new IOException(HTTP_ERROR_CONNECT_FAIL, e);
+            throw new IOException(e.getMessage(), e);
         }
     }
 
     public OkHttpClient makeClient(HTTPParameter parameter, okhttp3.Request httpRequest, CookieJar cookieJar) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                .connectionSpecs(Collections.singletonList(ConnectionSpec.COMPATIBLE_TLS))
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
@@ -65,6 +72,7 @@ public abstract class HTTPSource<TArgument, TData> extends FetchParseSource<TArg
         return builder.build();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     private okhttp3.Request makeRequest(HTTPParameter parameter) {
         okhttp3.Request.Builder builder = new okhttp3.Request.Builder();
         String urlString = parameter.url();

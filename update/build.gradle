@@ -13,6 +13,10 @@ buildscript {
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
+    buildTypes {
+        release {
+        }
+    }
     //库项目不生成 BuildConfig
     libraryVariants.all {
         it.generateBuildConfig.enabled = false
