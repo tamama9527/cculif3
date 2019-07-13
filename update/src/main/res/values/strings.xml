@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="android_auto_update_dialog_title">發現新版本</string>
+
+    <string name="android_auto_update_notify_ticker">發現新版本,點擊進行升級</string>
+    <string name="android_auto_update_notify_content">發現新版本,點擊進行升級</string>
+
+    <string name="android_auto_update_dialog_btn_download">立即下載</string>
+    <string name="android_auto_update_dialog_btn_cancel">以後再說</string>
+
+    <string name="android_auto_update_toast_no_new_update">已經是最新版本</string>
+
+    <string name="android_auto_update_download_progress">正在下載:%1$d%%</string>
+
+    <string name="android_auto_update_dialog_checking">正在檢查版本</string>
+
+
+</resources>

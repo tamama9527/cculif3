@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+
+dependencies {
+    implementation project(':library')
+    implementation "com.android.support:appcompat-v7:27.1.0"
+}
+
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        applicationId "com.loveplusplus.update.sample"
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode 3
+        versionName "1.2"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("../extras/demo.jks")
+            storePassword "android"
+            keyAlias "android"
+            keyPassword "android"
+        }
+
+        release {
+            storeFile file("../extras/demo.jks")
+            storePassword "android"
+            keyAlias "android"
+            keyPassword "android"
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+        }
+
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            zipAlignEnabled true
+        }
+    }
+
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+

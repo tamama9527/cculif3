@@ -1,13 +1,13 @@
 package org.zankio.cculife.ui.score;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import android.view.Menu;
 
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.zankio.ccudata.base.model.AuthData;
 import org.zankio.ccudata.base.model.Response;
 import org.zankio.ccudata.portal.model.ScoreQueryPortalData;

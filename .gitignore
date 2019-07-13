@@ -37,5 +37,5 @@ local.properties
 build/*
 */libs/*-javadoc/*
 google-services.json
-
+*jks
 !.ci/extras/google-services.json

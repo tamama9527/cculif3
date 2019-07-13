@@ -1,1 +1,11 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext {
+    var = '25.0.3'
+}// Top-level build file where you can add configuration options common to all sub-projects/modules.
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+    }
+}

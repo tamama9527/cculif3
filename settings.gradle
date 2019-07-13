@@ -1,3 +1,2 @@
-include ':CCULife', ':ccudata'
+include ':CCULife', ':ccudata', ':update'
 //include ':ActionBarSherlock'
-

@@ -12,15 +12,16 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.loveplusplus.update.UpdateChecker;
+
 import org.zankio.cculife.R;
 import org.zankio.cculife.UserManager;
+import org.zankio.cculife.ui.base.BaseActivity;
 import org.zankio.cculife.ui.ccu.calendar.CCUScheduleActivity;
 import org.zankio.cculife.ui.course.schedule.CourseTimeTableActivity;
-import org.zankio.cculife.ui.score.ScoreQueryActivity;
-import org.zankio.cculife.ui.base.BaseActivity;
 import org.zankio.cculife.ui.ecourse.CourseActivity;
+import org.zankio.cculife.ui.score.ScoreQueryActivity;
 import org.zankio.cculife.ui.transport.TransportActivity;
-
 public class HomeActivity extends BaseActivity {
 
     private static final int ACTIVITY_LOGIN = 1;
@@ -50,7 +51,7 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initMenu();
-
+        UpdateChecker.checkForNotification(HomeActivity.this);
         sessionManager = UserManager.getInstance(this);
 
         GridView serviceView = (GridView)findViewById(R.id.gridView);

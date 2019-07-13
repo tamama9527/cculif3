@@ -62,7 +62,7 @@ public class Updater {
     public void checkUpdate() {
         SharedPreferences preferences;
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (preferences.getBoolean("auto_check_update", true)) {
+        if (preferences.getBoolean("check_update", true)) {
             long latestCheck = preferences.getLong("update_latest_check", 0);
             int updateInterval = Integer.valueOf(preferences.getString("update_interval", "1"));
 
