@@ -62,7 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (!toolbarInited) initToolbar();
         ActionBar actionBar = super.getSupportActionBar();
 
-        if (actionBar == null) throw new RuntimeException("initial Toolbar fail");
+        //if (actionBar == null) throw new RuntimeException("initial Toolbar fail");
         return actionBar;
     }
 

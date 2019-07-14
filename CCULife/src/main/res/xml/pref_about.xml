@@ -26,9 +26,8 @@
     </Preference>
     <Preference
         android:key="about_author"
-        android:title="@string/author"
-        android:summary="Zankio">
-    </Preference>
+        android:summary="Zankio,Tamama"
+        android:title="@string/author"></Preference>
     <Preference
         android:key="about"
         android:title="@string/about">
