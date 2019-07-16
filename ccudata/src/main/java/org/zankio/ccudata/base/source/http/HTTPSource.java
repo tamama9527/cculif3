@@ -12,6 +12,7 @@ import org.zankio.ccudata.base.source.FetchParseSource;
 import org.zankio.ccudata.base.source.http.annotation.Charset;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +58,8 @@ public abstract class HTTPSource<TArgument, TData> extends FetchParseSource<TArg
 
     public OkHttpClient makeClient(HTTPParameter parameter, okhttp3.Request httpRequest, CookieJar cookieJar) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .connectionSpecs(Collections.singletonList(ConnectionSpec.COMPATIBLE_TLS))
+                //.connectionSpecs(Arrays.asList(ConnectionSpec.MODERN_TLS, ConnectionSpec.CLEARTEXT))
+                .connectionSpecs(Arrays.asList(ConnectionSpec.MODERN_TLS, ConnectionSpec.COMPATIBLE_TLS,ConnectionSpec.CLEARTEXT))
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
