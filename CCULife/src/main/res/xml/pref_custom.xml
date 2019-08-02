@@ -8,5 +8,9 @@
     <org.zankio.cculife.ui.UpdateCoursePreference
         android:title="更新旁聽課程列表"
         android:key="update_course_list"/>
+    <Preference
+        android:id="@+id/update_button1"
+        android:key="check_update"
+        android:title="檢查更新"></Preference>
 
 </PreferenceScreen>

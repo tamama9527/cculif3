@@ -35,7 +35,7 @@ public class CCUSchedule {
             is.read(buffer);
             is.close();
 
-            return new String(buffer);
+            return new String(buffer,"UTF-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
