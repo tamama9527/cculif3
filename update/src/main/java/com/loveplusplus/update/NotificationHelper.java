@@ -1,5 +1,6 @@
 package com.loveplusplus.update;
 
+import android.annotation.TargetApi;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -40,6 +41,7 @@ public class NotificationHelper extends ContextWrapper {
     /**
      * Show Notification
      */
+    @TargetApi(Build.VERSION_CODES.DONUT)
     public void showNotification(String content, String apkUrl) {
 
         Intent myIntent = new Intent(this, DownloadService.class);
@@ -54,6 +56,7 @@ public class NotificationHelper extends ContextWrapper {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.DONUT)
     public void updateProgress(int progress) {
 
 
