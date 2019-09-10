@@ -66,8 +66,6 @@ public class TransportActivity extends BaseActivity
                 new Page(getString(R.string.cybus), BusFragment.getInstance(new BusLineRequest[]{
                         new BusLineRequest("7309", "0", "1", "嘉義 -> 中正"),
                         new BusLineRequest("7309", "0", "2", "中正 -> 嘉義"),
-                        new BusLineRequest("7309", "A", "1", "嘉義 -> 中正 -> 南華"),
-                        new BusLineRequest("7309", "A", "2", "南華 -> 中正 -> 嘉義"),
                 })),
                 new Page(getString(R.string.solarbus), BusFragment.getInstance(new BusLineRequest[]{
                         new BusLineRequest("7005", "0", "1", "中正 -> 台北"),
