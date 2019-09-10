@@ -2,6 +2,8 @@ package org.zankio.cculife.services;
 
 import android.annotation.TargetApi;
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -123,8 +125,21 @@ public class DownloadService extends IntentService {
 
         if (!path.exists())
             path.mkdir();
+        //通知channel必要的init
+        NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        String id ="channel_1";//channel的id
+        String description = "CCULIFE";//channel的描述信息
+        int importance = NotificationManager.IMPORTANCE_LOW;//通知channel的重要性
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(id, description, importance);//生成channel
+            manager.createNotificationChannel(channel);
+        }
+        /*channel屬性
+        channel.enableVibration(true);震動
+        channel.enableLights(true);提示燈
+        */
 
-        mBuilder = new NotificationCompat.Builder(this);
+        mBuilder = new NotificationCompat.Builder(this,id);
         DownloadService.notify(this, mNotifyManager, mBuilder, currentId, filename);
         notifyFinishIntent = generateOpenFilePendingIntent(currentId, path.getAbsolutePath(), filename, "finish");
         notifyErrorIntent = generateOpenFilePendingIntent(currentId, path.getAbsolutePath(), filename, "error");
