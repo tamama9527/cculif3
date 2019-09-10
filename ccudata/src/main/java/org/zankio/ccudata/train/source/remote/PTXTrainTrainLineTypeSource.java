@@ -1,6 +1,7 @@
 package org.zankio.ccudata.train.source.remote;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -43,7 +44,6 @@ public class PTXTrainTrainLineTypeSource extends HTTPJSONSource<TrainRequest, Tr
         return new Request<>(TYPE, new TrainRequest(no, date), TrainTimetable.class);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void initHTTPRequest(Request<TrainTimetable, TrainRequest> request) {
         super.initHTTPRequest(request);
@@ -67,6 +67,7 @@ public class PTXTrainTrainLineTypeSource extends HTTPJSONSource<TrainRequest, Tr
             e1.printStackTrace();
         }
         String sAuth = "hmac username=\"" + APPID + "\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"" + Signature + "\"";
+        Log.d("sAuth",sAuth);
         httpParameter(request)
                 .url(String.format(URL_TRAIN_DAILY_TIMETABLE, trainRequest.date))
                 .headers("Authorization",sAuth)

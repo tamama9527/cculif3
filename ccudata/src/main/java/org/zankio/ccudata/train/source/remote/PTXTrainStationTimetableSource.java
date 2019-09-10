@@ -45,7 +45,6 @@ public class PTXTrainStationTimetableSource extends HTTPJSONSource<TrainRequest,
         return new Request<>(TYPE, new TrainRequest(no, date), TrainTimetable.class);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void initHTTPRequest(Request<TrainTimetable, TrainRequest> request) {
         super.initHTTPRequest(request);
@@ -68,6 +67,7 @@ public class PTXTrainStationTimetableSource extends HTTPJSONSource<TrainRequest,
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }
+        Log.d("Signature",Signature);
         String sAuth = "hmac username=\"" + APPID + "\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"" + Signature + "\"";
         httpParameter(request)
                 .url(String.format(URL_TRAIN_TIMETABLE, trainRequest.no, trainRequest.date))

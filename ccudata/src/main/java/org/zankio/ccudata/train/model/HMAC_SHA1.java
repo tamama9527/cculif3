@@ -11,10 +11,9 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 public class HMAC_SHA1 {
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String Signature(String xData, String AppKey) throws java.security.SignatureException {
+    public static String Signature(String xData, String AppKey) throws SignatureException {
         try {
-            final Base64.Encoder encoder = Base64.getEncoder();
+            String result;
             // get an hmac_sha1 key from the raw key bytes
             SecretKeySpec signingKey = new SecretKeySpec(AppKey.getBytes("UTF-8"),"HmacSHA1");
 
@@ -24,9 +23,16 @@ public class HMAC_SHA1 {
 
             // compute the hmac on input data bytes
             byte[] rawHmac = mac.doFinal(xData.getBytes("UTF-8"));
-            String result = encoder.encodeToString(rawHmac);
-            return result;
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                final Base64.Encoder encoder;
+                encoder = Base64.getEncoder();
+                result = encoder.encodeToString(rawHmac);
+                return result;
+            }
+            else{
+                result = new String(android.util.Base64.encode(rawHmac, android.util.Base64.NO_WRAP));
+                return result;
+            }
         } catch (Exception e) {
             throw new SignatureException("Failed to generate HMAC : "+ e.getMessage());
         }
