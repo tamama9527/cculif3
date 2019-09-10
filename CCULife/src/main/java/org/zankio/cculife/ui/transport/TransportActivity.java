@@ -103,6 +103,7 @@ public class TransportActivity extends BaseActivity
     }
 
     @SuppressWarnings("unchecked")
+    /*移除過時的api*/
     @Override
     public Observable<Response<TrainTimetable, TrainRequest>> getTrainStatus(String code) {
         String key = String.format("%s_%s", KEY_TRAIN_PREFIX, code);
@@ -112,11 +113,8 @@ public class TransportActivity extends BaseActivity
         if (observable == null) {
             Date date = new Date();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            SimpleDateFormat formatWeb = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
-            Observable<Response<TrainTimetable, TrainRequest>> web = train.fetch(TrainStopStatusSource.request(code, formatWeb.format(date)));
             observable =
                     train.fetch(PTXTrainStationTimetableSource.request(code, format.format(date)))
-                            .concatWith(train.fetch(PTXTrainTrainLineTypeSource.request(code, format.format(date))))
                             .concatWith(train.fetch(PTXTrainLiveDelaySource.request(code)))
                             .reduce((r1, r2) -> {
                                 Log.d("reduce", r1.request().type + "/" + r2.request().type);
@@ -148,7 +146,6 @@ public class TransportActivity extends BaseActivity
 
                                 return r1.data(timetable);
                             })
-                            .onErrorResumeNext(web)
                             .cache();
             mCache.set(key, observable, CACHE_TIME);
         }

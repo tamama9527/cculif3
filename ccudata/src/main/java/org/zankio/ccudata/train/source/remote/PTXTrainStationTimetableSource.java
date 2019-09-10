@@ -1,5 +1,10 @@
 package org.zankio.ccudata.train.source.remote;
 
+import android.os.Build;
+import android.util.Log;
+
+import androidx.annotation.RequiresApi;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,15 +17,19 @@ import org.zankio.ccudata.base.source.annotation.Important;
 import org.zankio.ccudata.base.source.annotation.Order;
 import org.zankio.ccudata.base.source.http.HTTPJSONSource;
 import org.zankio.ccudata.base.source.http.annotation.Method;
+import org.zankio.ccudata.train.model.HMAC_SHA1;
 import org.zankio.ccudata.train.model.TrainRequest;
 import org.zankio.ccudata.train.model.TrainTimetable;
 
+import java.io.IOException;
+import java.security.SignatureException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 @SuppressWarnings("DefaultAnnotationParam")
 
@@ -36,6 +45,7 @@ public class PTXTrainStationTimetableSource extends HTTPJSONSource<TrainRequest,
         return new Request<>(TYPE, new TrainRequest(no, date), TrainTimetable.class);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void initHTTPRequest(Request<TrainTimetable, TrainRequest> request) {
         super.initHTTPRequest(request);
@@ -45,8 +55,24 @@ public class PTXTrainStationTimetableSource extends HTTPJSONSource<TrainRequest,
         calendar.set(Calendar.SECOND, 0);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.US);
+        /* 為了ptx hmac check */
+        String xdate = getServerTime();
+        String SignDate = "x-date: " + xdate;
+        String APPID = "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF";
+        String APPKey = "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF";
+        String Signature="";
+        try {
+            //取得加密簽章
+            Signature = HMAC_SHA1.Signature(SignDate, APPKey);
+        } catch (SignatureException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        String sAuth = "hmac username=\"" + APPID + "\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"" + Signature + "\"";
         httpParameter(request)
                 .url(String.format(URL_TRAIN_TIMETABLE, trainRequest.no, trainRequest.date))
+                .headers("Authorization",sAuth)
+                .headers("x-date",xdate)
                 .queryStrings("$format", "JSON")
                 .queryStrings("$filter",
                         String.format(
@@ -59,11 +85,11 @@ public class PTXTrainStationTimetableSource extends HTTPJSONSource<TrainRequest,
     }
 
     @Override
-    protected TrainTimetable parse(Request<TrainTimetable, TrainRequest> request, HttpResponse response, JSON json) throws JSONException {
+    protected TrainTimetable parse(Request<TrainTimetable, TrainRequest> request, HttpResponse response, JSON json) throws JSONException, IOException {
         TrainTimetable trainTimetable = new TrainTimetable();
         List<TrainTimetable.Item> up = new ArrayList<>();
         List<TrainTimetable.Item> down = new ArrayList<>();
-
+        Log.d("JSON-LOG",request.toString());
         JSONArray traininfos = json.array();
         for (int i = 0; i < traininfos.length(); i++) {
             JSONObject traininfo = traininfos.getJSONObject(i);
@@ -71,7 +97,7 @@ public class PTXTrainStationTimetableSource extends HTTPJSONSource<TrainRequest,
             item.trainNo = traininfo.getString("TrainNo");
             item.to = traininfo.getString("EndingStationName");
             item.departure = traininfo.getString("DepartureTime").substring(0, 5);
-            item.trainType = parseTrainClassification(traininfo.getString("TrainClassificationName"));
+            item.trainType = parseTrainClassification(traininfo.getString("TrainTypeName"));
 
             if (traininfo.getInt("Direction") == 0) up.add(item);
             else down.add(item);
@@ -104,6 +130,14 @@ public class PTXTrainStationTimetableSource extends HTTPJSONSource<TrainRequest,
         if (delay == null || "".equals(delay)) return "";
         else if ("0".equals(delay)) return "準點";
         else return String.format("晚 %s 分", delay);
+    }
+
+    private static String getServerTime() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return dateFormat.format(calendar.getTime());
     }
 
 }

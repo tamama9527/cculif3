@@ -7,6 +7,8 @@ import org.zankio.ccudata.base.model.HttpResponse;
 import org.zankio.ccudata.base.model.JSON;
 import org.zankio.ccudata.base.model.Request;
 
+import java.io.IOException;
+
 public abstract class HTTPJSONSource<TArgument, TData> extends HTTPSource<TArgument, TData>{
 
     @Override
@@ -21,5 +23,5 @@ public abstract class HTTPJSONSource<TArgument, TData> extends HTTPSource<TArgum
         return parse(request, response, json);
     }
 
-    protected abstract TData parse(Request<TData, TArgument> request, HttpResponse response, JSON json) throws JSONException;
+    protected abstract TData parse(Request<TData, TArgument> request, HttpResponse response, JSON json) throws JSONException, IOException;
 }

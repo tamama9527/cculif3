@@ -1,5 +1,9 @@
 package org.zankio.ccudata.train.source.remote;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,15 +16,18 @@ import org.zankio.ccudata.base.source.annotation.Important;
 import org.zankio.ccudata.base.source.annotation.Order;
 import org.zankio.ccudata.base.source.http.HTTPJSONSource;
 import org.zankio.ccudata.base.source.http.annotation.Method;
+import org.zankio.ccudata.train.model.HMAC_SHA1;
 import org.zankio.ccudata.train.model.TrainRequest;
 import org.zankio.ccudata.train.model.TrainTimetable;
 
+import java.security.SignatureException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 @SuppressWarnings("DefaultAnnotationParam")
 
@@ -36,6 +43,7 @@ public class PTXTrainTrainLineTypeSource extends HTTPJSONSource<TrainRequest, Tr
         return new Request<>(TYPE, new TrainRequest(no, date), TrainTimetable.class);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void initHTTPRequest(Request<TrainTimetable, TrainRequest> request) {
         super.initHTTPRequest(request);
@@ -45,8 +53,24 @@ public class PTXTrainTrainLineTypeSource extends HTTPJSONSource<TrainRequest, Tr
         calendar.set(Calendar.SECOND, 0);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.US);
+
+        String xdate = getServerTime();
+        String SignDate = "x-date: " + xdate;
+        String APPID = "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF";
+        String APPKey = "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF";
+        String Signature="";
+        try {
+            //取得加密簽章
+            Signature = HMAC_SHA1.Signature(SignDate, APPKey);
+        } catch (SignatureException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        String sAuth = "hmac username=\"" + APPID + "\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"" + Signature + "\"";
         httpParameter(request)
                 .url(String.format(URL_TRAIN_DAILY_TIMETABLE, trainRequest.date))
+                .headers("Authorization",sAuth)
+                .headers("x-date",xdate)
                 .queryStrings(
                         "$filter",
                         String.format(
@@ -104,4 +128,11 @@ public class PTXTrainTrainLineTypeSource extends HTTPJSONSource<TrainRequest, Tr
         else return String.format("晚 %s 分", delay);
     }
 
+    private static String getServerTime() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return dateFormat.format(calendar.getTime());
+    }
 }
