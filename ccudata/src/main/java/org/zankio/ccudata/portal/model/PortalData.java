@@ -3,7 +3,7 @@ package org.zankio.ccudata.portal.model;
 import rx.Observable;
 
 public class PortalData {
-    private static final String SSO_URL_BASE = "http://portal.ccu.edu.tw/ssoService.php?service=%s&linkId=%s";
+    private static final String SSO_URL_BASE = "https://portal.ccu.edu.tw/ssoService.php?service=%s&linkId=%s";
     public final String PORTAL_URL;
     public final String PORTAL_ID;
 

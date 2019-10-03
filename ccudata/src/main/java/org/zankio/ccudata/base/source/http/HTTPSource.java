@@ -58,8 +58,7 @@ public abstract class HTTPSource<TArgument, TData> extends FetchParseSource<TArg
 
     public OkHttpClient makeClient(HTTPParameter parameter, okhttp3.Request httpRequest, CookieJar cookieJar) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                //.connectionSpecs(Arrays.asList(ConnectionSpec.MODERN_TLS, ConnectionSpec.CLEARTEXT))
-                .connectionSpecs(Arrays.asList(ConnectionSpec.MODERN_TLS, ConnectionSpec.COMPATIBLE_TLS,ConnectionSpec.CLEARTEXT))
+                .connectionSpecs(Arrays.asList(ConnectionSpec.MODERN_TLS,ConnectionSpec.RESTRICTED_TLS, ConnectionSpec.COMPATIBLE_TLS,ConnectionSpec.CLEARTEXT))
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)

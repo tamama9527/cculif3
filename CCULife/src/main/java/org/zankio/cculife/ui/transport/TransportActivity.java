@@ -18,7 +18,6 @@ import org.zankio.ccudata.train.model.TrainTimetable;
 import org.zankio.ccudata.train.source.remote.PTXTrainLiveDelaySource;
 import org.zankio.ccudata.train.source.remote.PTXTrainStationTimetableSource;
 import org.zankio.ccudata.train.source.remote.PTXTrainTrainLineTypeSource;
-import org.zankio.ccudata.train.source.remote.TrainStopStatusSource;
 import org.zankio.cculife.R;
 import org.zankio.cculife.ui.base.BaseActivity;
 import org.zankio.cculife.ui.base.CacheFragment;

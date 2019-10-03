@@ -9,7 +9,7 @@ public class EcoursePortalData extends PortalData{
 
     public EcoursePortalData() {
         super(
-                "http://ecourse.ccu.edu.tw/php/getssoCcuRight.php",
+                "https://ecourse.ccu.edu.tw/php/getssoCcuRight.php",
                 "0000"
         );
     }
