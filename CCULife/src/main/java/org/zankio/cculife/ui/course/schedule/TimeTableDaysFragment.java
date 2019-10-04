@@ -70,7 +70,7 @@ public class TimeTableDaysFragment extends BaseMessageFragment
             lastPage = conv == null ? 0 : conv;
         }
 
-        mViewPager = (ViewPager) view.findViewById(R.id.pager);
+        mViewPager = view.findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         adapter = new TimeTableAdapter[7];

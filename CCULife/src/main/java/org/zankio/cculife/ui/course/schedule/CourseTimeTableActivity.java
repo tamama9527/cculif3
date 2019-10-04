@@ -34,7 +34,7 @@ public class CourseTimeTableActivity extends BaseFragmentActivity
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
 
-        toolbarSpinner = (Spinner) findViewById(R.id.toolbar_spinner);
+        toolbarSpinner = findViewById(R.id.toolbar_spinner);
         toolbarSpinner.setAdapter(
                 new ArrayAdapter<>(
                         getActionBarThemedContextCompat(),

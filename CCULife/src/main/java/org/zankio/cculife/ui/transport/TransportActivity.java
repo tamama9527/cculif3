@@ -114,6 +114,7 @@ public class TransportActivity extends BaseActivity
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             observable =
                     train.fetch(PTXTrainStationTimetableSource.request(code, format.format(date)))
+                            .concatWith(train.fetch(PTXTrainTrainLineTypeSource.request(code, format.format(date))))
                             .concatWith(train.fetch(PTXTrainLiveDelaySource.request(code)))
                             .reduce((r1, r2) -> {
                                 Log.d("reduce", r1.request().type + "/" + r2.request().type);

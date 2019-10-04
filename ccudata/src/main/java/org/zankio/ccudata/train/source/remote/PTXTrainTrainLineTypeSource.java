@@ -39,7 +39,7 @@ import java.util.TimeZone;
 @DataType(PTXTrainTrainLineTypeSource.TYPE)
 public class PTXTrainTrainLineTypeSource extends HTTPJSONSource<TrainRequest, TrainTimetable>{
     public final static String TYPE = "TRAIN_LINE_TYPE";
-    private static final String URL_TRAIN_DAILY_TIMETABLE = "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/DailyTimetable/%s";
+    private static final String URL_TRAIN_DAILY_TIMETABLE = "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/DailyTimetable/Today";
     public static Request<TrainTimetable, TrainRequest> request(String no, String date) {
         return new Request<>(TYPE, new TrainRequest(no, date), TrainTimetable.class);
     }
@@ -69,7 +69,7 @@ public class PTXTrainTrainLineTypeSource extends HTTPJSONSource<TrainRequest, Tr
         String sAuth = "hmac username=\"" + APPID + "\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"" + Signature + "\"";
         Log.d("sAuth",sAuth);
         httpParameter(request)
-                .url(String.format(URL_TRAIN_DAILY_TIMETABLE, trainRequest.date))
+                .url(String.format(URL_TRAIN_DAILY_TIMETABLE))
                 .headers("Authorization",sAuth)
                 .headers("x-date",xdate)
                 .queryStrings(

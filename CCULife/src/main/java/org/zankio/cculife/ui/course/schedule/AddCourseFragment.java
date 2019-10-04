@@ -57,7 +57,7 @@ public class AddCourseFragment extends DialogFragment
         view.findViewById(R.id.search).setOnClickListener(this);
 
         noResultView = view.findViewById(R.id.no_result);
-        keyView = (EditText) view.findViewById(R.id.key);
+        keyView = view.findViewById(R.id.key);
         keyView.setOnEditorActionListener(this);
         keyView.setImeActionLabel("搜尋", KeyEvent.KEYCODE_ENTER);
 
