@@ -40,7 +40,7 @@ import java.util.TimeZone;
 @DataType(PTXTrainLiveDelaySource.TYPE)
 public class PTXTrainLiveDelaySource extends HTTPJSONSource<TrainRequest, TrainTimetable>{
     public final static String TYPE = "TRAIN_LIVE_DELAY";
-    private static final String URL_TRAIN_DELAY = "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/LiveBoard/Station/%s";
+    private static final String URL_TRAIN_DELAY = "https://ptx.transportdata.tw/MOTC/v3/Rail/TRA/StationLiveBoard/Station/%s";
     private static final Map<String, String> trainClassification = new HashMap<>();
     static {
         trainClassification.put("1115", "莒光");

@@ -40,7 +40,7 @@ import java.util.TimeZone;
 @DataType(PTXTrainStationTimetableSource.TYPE)
 public class PTXTrainStationTimetableSource extends HTTPJSONSource<TrainRequest, TrainTimetable>{
     public final static String TYPE = "TRAIN_STATION_TIMETABLE";
-    private static final String URL_TRAIN_TIMETABLE = "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/DailyTimetable/Station/%s/%s";
+    private static final String URL_TRAIN_TIMETABLE = "https://ptx.transportdata.tw/MOTC/v3/Rail/TRA/DailyStationTimetable/Today/Station/%s";
     public static Request<TrainTimetable, TrainRequest> request(String no, String date) {
         return new Request<>(TYPE, new TrainRequest(no, date), TrainTimetable.class);
     }
@@ -70,18 +70,16 @@ public class PTXTrainStationTimetableSource extends HTTPJSONSource<TrainRequest,
         Log.d("Signature",Signature);
         String sAuth = "hmac username=\"" + APPID + "\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"" + Signature + "\"";
         httpParameter(request)
-                .url(String.format(URL_TRAIN_TIMETABLE, trainRequest.no, trainRequest.date))
+                .url(String.format(URL_TRAIN_TIMETABLE, trainRequest.no))
                 .headers("Authorization",sAuth)
                 .headers("x-date",xdate)
                 .queryStrings("$format", "JSON")
                 .queryStrings("$filter",
                         String.format(
-                                "DepartureTime ge '%s' and EndingStationID ne '%s'",
-                                simpleDateFormat.format(calendar.getTime()),
-                                trainRequest.no
+                                "TimeTables/any(d:d/DepartureTime ge '%s')",
+                                simpleDateFormat.format(calendar.getTime())
                         )
-                )
-                .queryStrings("$orderby", "DepartureTime");
+                );
     }
 
     @Override
@@ -89,18 +87,23 @@ public class PTXTrainStationTimetableSource extends HTTPJSONSource<TrainRequest,
         TrainTimetable trainTimetable = new TrainTimetable();
         List<TrainTimetable.Item> up = new ArrayList<>();
         List<TrainTimetable.Item> down = new ArrayList<>();
-        Log.d("JSON-LOG",request.toString());
-        JSONArray traininfos = json.array();
-        for (int i = 0; i < traininfos.length(); i++) {
-            JSONObject traininfo = traininfos.getJSONObject(i);
-            TrainTimetable.Item item = trainTimetable.new Item();
-            item.trainNo = traininfo.getString("TrainNo");
-            item.to = traininfo.getString("EndingStationName");
-            item.departure = traininfo.getString("DepartureTime").substring(0, 5);
-            item.trainType = parseTrainClassification(traininfo.getString("TrainTypeName"));
+        Log.d("JSON-LOG",json.object().toString());
+        JSONArray stationinfo = json.object().getJSONArray("StationTimetables");
+        Log.d("JSON-LOG",stationinfo.toString());
+        for (int i = 0; i < stationinfo.length(); i++) {
+            JSONObject traininfo_direction = stationinfo.getJSONObject(i);
+            JSONArray traininfos = traininfo_direction .getJSONArray("TimeTables");
+            for(int j=0; j < traininfos.length();j++){
+                JSONObject traininfo = traininfos.getJSONObject(j);
+                TrainTimetable.Item item = trainTimetable.new Item();
+                item.trainNo = traininfo.getString("TrainNo");
+                item.to = traininfo.getString("EndingStationName");
+                item.departure = traininfo.getString("DepartureTime").substring(0, 5);
+                item.trainType = parseTrainClassification(traininfo.getString("TrainTypeName"));
 
-            if (traininfo.getInt("Direction") == 0) up.add(item);
-            else down.add(item);
+                if (traininfo_direction.getInt("Direction") == 0) up.add(item);
+                else down.add(item);
+            }
         }
 
         trainTimetable.up = up.toArray(new TrainTimetable.Item[0]);

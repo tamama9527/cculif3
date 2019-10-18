@@ -74,8 +74,8 @@ public class TransportActivity extends BaseActivity
                         new BusLineRequest("6187", "0", "1", "台中 -> 中正"),
                         new BusLineRequest("6187", "0", "2", "中正 -> 台中"),
                 })),
-                new Page(getString(R.string.train_minxiong), TrainFragment.getInstance("1214")),
-                new Page(getString(R.string.train_chiayi), TrainFragment.getInstance("1215")),
+                new Page(getString(R.string.train_minxiong), TrainFragment.getInstance("4060")),
+                new Page(getString(R.string.train_chiayi), TrainFragment.getInstance("4080")),
 
         });
         mPagerHelper.setupViewPager(mViewPager);
